@@ -1,7 +1,7 @@
 apiVersion: apps.openliberty.io/v1beta2
 kind: OpenLibertyApplication
 metadata:
-  name: service-binding-ol
+  name: service-binding-lib
 spec:
   # Add fields here
   replicas: 1

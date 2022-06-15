@@ -12,7 +12,6 @@ kind: Deployment
 metadata:
   name: service-with-cert-lib-app
 status:
-  observedGeneration: 2
   replicas: 1
   readyReplicas: 1
   updatedReplicas: 1
@@ -27,6 +26,8 @@ spec:
       containers:
         - env:
             - name: TLS_DIR
+            - name: SA_RESOURCE_VERSION
+            - name: SERVICE_CERT_SECRET_RESOURCE_VERSION
             - name: WLP_LOGGING_CONSOLE_LOGLEVEL
             - name: WLP_LOGGING_CONSOLE_SOURCE
             - name: WLP_LOGGING_CONSOLE_FORMAT

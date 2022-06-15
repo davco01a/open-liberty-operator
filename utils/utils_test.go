@@ -53,6 +53,10 @@ func TestCustomizeLibertyEnv(t *testing.T) {
 	spec := openlibertyv1beta2.OpenLibertyApplicationSpec{Service: svc}
 	pts := &corev1.PodTemplateSpec{}
 
+	TLS_DIR_ENV := []corev1.EnvVar{
+		{Name: "TLS_DIR", Value: "/etc/x509/certs"},
+	}
+
 	targetEnv := []corev1.EnvVar{
 		{Name: "WLP_LOGGING_CONSOLE_LOGLEVEL", Value: "info"},
 		{Name: "WLP_LOGGING_CONSOLE_SOURCE", Value: "message,accessLog,ffdc,audit"},
@@ -70,6 +74,8 @@ func TestCustomizeLibertyEnv(t *testing.T) {
 
 	oputils.CustomizePodSpec(pts, openliberty)
 	CustomizeLibertyEnv(pts, openliberty, rb.GetClient())
+
+	targetEnv = append(TLS_DIR_ENV, targetEnv...)
 
 	testEnv := []Test{
 		{"Test environment defaults", pts.Spec.Containers[0].Env, targetEnv},
@@ -96,6 +102,8 @@ func TestCustomizeLibertyEnv(t *testing.T) {
 	oputils.CustomizePodSpec(pts, openliberty)
 
 	CustomizeLibertyEnv(pts, openliberty, rb.GetClient())
+
+	targetEnv = append(targetEnv, TLS_DIR_ENV...)
 
 	testEnv = []Test{
 		{"Test environment config", pts.Spec.Containers[0].Env, targetEnv},

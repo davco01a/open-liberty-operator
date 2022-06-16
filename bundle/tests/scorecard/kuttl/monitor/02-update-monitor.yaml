@@ -1,7 +1,7 @@
 apiVersion: apps.openliberty.io/v1beta2
 kind: OpenLibertyApplication
 metadata:
-  name: service-monitor-lib
+  name: service-monitor-liberty
 spec:
   monitoring:
     endpoints:
@@ -21,4 +21,3 @@ spec:
           key: "username"
         password:
           key: "password"
-      

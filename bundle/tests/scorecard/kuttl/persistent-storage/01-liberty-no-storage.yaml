@@ -1,9 +1,7 @@
 apiVersion: apps.openliberty.io/v1beta2
 kind: OpenLibertyApplication
 metadata:
-  name: route-with-cert-lib
+  name: persistent-liberty
 spec:
-  # Add fields here
-  expose: true
-  route:
-
+  volumeMounts:
+  statefulSet: {}
